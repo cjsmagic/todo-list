@@ -68,3 +68,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# chrome extension used for choosing selectors for unit testing
+
+testing playground
+
+# snapshot testing
+
+used renderer package from react-test-renderer for this
+
+# pixel perfect testing
+
+https://medium.com/ing-blog/pixels-matter-or-easy-ui-screenshot-testing-in-react-native-6e41ba91b225

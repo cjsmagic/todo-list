@@ -1,5 +1,6 @@
 // __tests__/TodoList.test.js
 import React from 'react'
+import renderer from 'react-test-renderer';
 import { render, fireEvent, waitFor, screen, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import TodoList from './TodoList'
@@ -9,9 +10,17 @@ afterEach(() => {
 })
 
 test('it should load', async () => {
-    render(<TodoList />)
+    render(<TodoList />);
     expect(screen.getByRole('heading', { name: /todo list/i })).toHaveTextContent('Todo List')
 })
+
+it('renders according to design', () => {
+    const tree = renderer
+        .create(<TodoList />)
+        .toJSON();
+    expect(tree).toMatchSnapshot();
+});
+
 
 test('it should add a new item', async () => {
     render(<TodoList />)
@@ -78,6 +87,8 @@ test('it should be deletable', async () => {
     }));
 
     await waitFor(() => expect(screen.queryByText(uniqueName)).toBeNull());
+
+    await waitFor(() => expect(screen.queryByText('No Items Found')).not.toBeNull());
     // screen.debug();
 })
 

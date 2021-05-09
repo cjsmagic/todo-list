@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders according to design 1`] = `
+<div
+  className="todo-list"
+  id="124"
+>
+  <h1>
+    Todo List
+  </h1>
+  <div
+    className="todo-list__input-controls"
+  >
+    <input
+      data-testid="test-id-todo-input"
+      onChange={[Function]}
+      placeholder="Enter todo"
+      type="text"
+      value=""
+    />
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      Add
+    </button>
+  </div>
+  <div
+    className="todo-list__items"
+  >
+    <div
+      className="todo-list__item todo-list__item--no-items"
+    >
+      <div
+        className="todo-list__item__name"
+      >
+        No Items Found
+      </div>
+    </div>
+  </div>
+</div>
+`;
