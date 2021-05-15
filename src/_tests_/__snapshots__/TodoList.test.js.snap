@@ -29,13 +29,25 @@ exports[`renders according to design 1`] = `
     className="todo-list__items"
   >
     <div
-      className="todo-list__item todo-list__item--no-items"
+      className="todo-list__item"
     >
       <div
         className="todo-list__item__name"
       >
-        No Items Found
+        todo 1
       </div>
+      <button
+        className="todo-list__item__edit todo-list__item__button"
+        onClick={[Function]}
+      >
+        Edit
+      </button>
+      <button
+        className="todo-list__item__delete todo-list__item__button"
+        onClick={[Function]}
+      >
+        Delete
+      </button>
     </div>
   </div>
 </div>

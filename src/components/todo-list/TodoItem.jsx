@@ -3,13 +3,21 @@ import React from "react";
 
 const props = {
   item: PropTypes.object.isRequired,
-  updateTodo: PropTypes.func.isRequired,
-  setUpdateTodo: PropTypes.func.isRequired,
+  tempText: PropTypes.object.isRequired,
+  setTempText: PropTypes.func.isRequired,
   items: PropTypes.array.isRequired,
-  setItems: PropTypes.func.isRequired,
+  updateTodo: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
 };
 
-const TodoItem = ({ item, updateTodo, setUpdateTodo, items, setItems }) => (
+const TodoItem = ({
+  item,
+  tempText,
+  setTempText,
+  items,
+  updateTodo,
+  deleteTodo,
+}) => (
   <div className="todo-list__item" key={item.id}>
     {!item.showEdit && <div className="todo-list__item__name">{item.name}</div>}
     {item.showEdit && (
@@ -17,8 +25,8 @@ const TodoItem = ({ item, updateTodo, setUpdateTodo, items, setItems }) => (
         className="todo-list__item__edit-input"
         type="text"
         placeholder="Enter todo"
-        value={updateTodo}
-        onChange={(e) => setUpdateTodo(e.target.value)}
+        value={tempText}
+        onChange={(e) => setTempText(e.target.value)}
         data-testid="test-id-todo-edit"
       />
     )}
@@ -29,10 +37,10 @@ const TodoItem = ({ item, updateTodo, setUpdateTodo, items, setItems }) => (
         onClick={() => {
           const itemsClone = [...items];
           const mappedTodo = itemsClone.find((_item) => _item.id === item.id);
-          mappedTodo.name = updateTodo;
+          mappedTodo.name = tempText;
           mappedTodo.showEdit = false;
-          setUpdateTodo("");
-          setItems(itemsClone);
+          setTempText("");
+          updateTodo(mappedTodo);
         }}
       >
         Update
@@ -46,8 +54,8 @@ const TodoItem = ({ item, updateTodo, setUpdateTodo, items, setItems }) => (
           const itemsClone = [...items];
           const mappedTodo = itemsClone.find((_item) => _item.id === item.id);
           mappedTodo.showEdit = false;
-          setUpdateTodo("");
-          setItems(itemsClone);
+          setTempText("");
+          updateTodo(mappedTodo);
         }}
       >
         Cancel
@@ -61,8 +69,8 @@ const TodoItem = ({ item, updateTodo, setUpdateTodo, items, setItems }) => (
           const itemsClone = [...items];
           const mappedTodo = itemsClone.find((_item) => _item.id === item.id);
           mappedTodo.showEdit = true;
-          setUpdateTodo(item.name);
-          setItems(itemsClone);
+          setTempText(mappedTodo.name);
+          updateTodo(mappedTodo);
         }}
       >
         Edit
@@ -73,7 +81,7 @@ const TodoItem = ({ item, updateTodo, setUpdateTodo, items, setItems }) => (
       <button
         className="todo-list__item__delete todo-list__item__button"
         onClick={() => {
-          setItems([...items.filter((_item) => _item.id !== item.id)]);
+          deleteTodo(item);
         }}
       >
         Delete

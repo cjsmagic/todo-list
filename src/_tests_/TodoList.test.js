@@ -1,29 +1,37 @@
 // __tests__/TodoList.test.js
 import React from 'react'
 import renderer from 'react-test-renderer';
-import { render, fireEvent, waitFor, screen, cleanup } from '@testing-library/react'
+import { render, fireEvent, waitFor, screen, cleanup } from './testUtils'
 import '@testing-library/jest-dom/extend-expect'
-import TodoList from './TodoList'
+import TodoListContainer from '../containers/TodoListContainer';
+import TodoList from '../components/todo-list/TodoList';
+
 
 afterEach(() => {
     cleanup()
 })
 
+const deps = { initialState: { todoList: [] } };
+
+const props = { list: [{ name: 'todo 1', id: new Date().getTime() }], addTodo: () => null, deleteTodo: () => null, updateTodo: () => null, }
+
 test('it should load', async () => {
-    render(<TodoList />);
+    render(<TodoListContainer />, deps);
+    // screen.debug();
     expect(screen.getByRole('heading', { name: /todo list/i })).toHaveTextContent('Todo List')
 })
 
 it('renders according to design', () => {
     const tree = renderer
-        .create(<TodoList />)
+        .create(<TodoList {...props}
+        />)
         .toJSON();
     expect(tree).toMatchSnapshot();
 });
 
 
 test('it should add a new item', async () => {
-    render(<TodoList />)
+    render(<TodoListContainer />, deps);
     const uniqueName = `${new Date().getTime()}__todo`;
 
     const inputElement = screen.getByTestId('test-id-todo-input');
@@ -40,7 +48,7 @@ test('it should add a new item', async () => {
 
 
 test('it should list items', async () => {
-    const { container } = render(<TodoList />)
+    const { container } = render(<TodoListContainer />, deps)
     const uniqueName = `${new Date().getTime()}__todo`;
 
     const inputElement = screen.getByTestId('test-id-todo-input');
@@ -70,7 +78,7 @@ test('it should list items', async () => {
 
 
 test('it should be deletable', async () => {
-    render(<TodoList />)
+    render(<TodoListContainer />, deps)
     const uniqueName = `${new Date().getTime()}__todo`;
 
     const inputElement = screen.getByTestId('test-id-todo-input');
@@ -94,7 +102,7 @@ test('it should be deletable', async () => {
 
 
 test('it should be editable', async () => {
-    render(<TodoList />)
+    render(<TodoListContainer />, deps)
     // screen.debug();
     const uniqueName = `${new Date().getTime()}__todo`;
 
