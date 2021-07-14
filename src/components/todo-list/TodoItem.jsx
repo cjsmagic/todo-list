@@ -8,7 +8,7 @@ const props = {
   items: PropTypes.array.isRequired,
   setItems: PropTypes.func.isRequired,
 };
-
+// testing unwanted code
 const TodoItem = ({ item, updateTodo, setUpdateTodo, items, setItems }) => (
   <div className="todo-list__item" key={item.id}>
     {!item.showEdit && <div className="todo-list__item__name">{item.name}</div>}
