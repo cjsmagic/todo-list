@@ -2,6 +2,6 @@
 const a = hello;
 
 
-const hello = () => {
+const hello2 = () => {
 
 };
