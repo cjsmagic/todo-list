@@ -3,7 +3,7 @@ import React from 'react'
 import renderer from 'react-test-renderer';
 import { render, fireEvent, waitFor, screen, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import TodoList from './TodoList'
+import TodoList from '../components/todo-list/TodoList';
 
 afterEach(() => {
     cleanup()
