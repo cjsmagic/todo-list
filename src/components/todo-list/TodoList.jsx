@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
 
 function TodoList() {
   const [todo, setTodo] = useState("");
   const [items, setItems] = useState([]);
   const [updateTodo, setUpdateTodo] = useState("");
+
+  useEffect(() => {}, []);
 
   return (
     <div className="todo-list" id="124">
