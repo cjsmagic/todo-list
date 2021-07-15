@@ -1,7 +1,7 @@
 
-const a = hello;
+const a = hello3;
 
 
-const hello2 = () => {
+const hello3 = () => {
 
 };
